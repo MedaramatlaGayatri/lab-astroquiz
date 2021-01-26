@@ -1,6 +1,8 @@
 package controller;
 
 import java.io.IOException;
+import java.util.Scanner;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import model.User;
 import utility.BasicEligibility;
-import utility.EligibiltyCheck;
+import utility.EligibilityCheck;
 
 @WebServlet(urlPatterns= {"/eligible"})
 public class EligibilityViewController extends HttpServlet {
@@ -27,7 +29,25 @@ public class EligibilityViewController extends HttpServlet {
 		RequestDispatcher rd=this.getServletContext().getRequestDispatcher("/WEB-INF/views/index.jsp");
 		rd.forward(request, response);
 	}
-
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		String name = sc.next();
+		String number = sc.next();
+		int age = sc.nextInt();
+		int height = sc.nextInt();
+		int weight = sc.nextInt();
+		String country = sc.next();
+		//public User() {
+		User user = new User(name,number,age,height,weight,country);
+		user.setName(name);
+		user.setNumber(number);
+		user.setAge(age);
+		user.setHeight(height);
+		user.setWeight(weight);
+		EligibilityCheck eligibilitycheck = new EligibilityCheck();
+		boolean spaceEligible = eligibilitycheck.basicEligibilityCheck(user);
+		System.out.print(spaceEligible);
+	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
@@ -45,6 +65,9 @@ public class EligibilityViewController extends HttpServlet {
 		user.setAge(age);
 		user.setHeight(height);
 		user.setWeight(weight);
+		EligibilityCheck eligibilitycheck = new EligibilityCheck();
+		boolean spaceEligible = eligibilitycheck.basicEligibilityCheck(user);
+		
 		
 		System.out.println(spaceEligible);
 			if(spaceEligible)
