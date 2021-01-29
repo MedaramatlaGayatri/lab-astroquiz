@@ -28,7 +28,7 @@ public class Eligibility extends HttpServlet {
 	EligibilityCheck eligibilitycheck = new EligibilityCheck();
 	boolean spaceEligible = eligibilitycheck.checkQuizAnswer(points);
 	System.out.print(spaceEligible);
-	/*if(spaceEligible)
+	if(spaceEligible)
 	{
 		RequestDispatcher rd=this.getServletContext().getRequestDispatcher("/WEB-INF/views/success.html");
 		rd.forward(request, response);	
@@ -38,7 +38,7 @@ public class Eligibility extends HttpServlet {
 		RequestDispatcher rd=this.getServletContext().getRequestDispatcher("/WEB-INF/views/fail.jsp");
 		rd.forward(request, response);
 		
-	}*/
+	}
 
 }
 }
